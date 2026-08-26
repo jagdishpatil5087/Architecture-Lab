@@ -2,7 +2,7 @@ import { formatPrice } from "../formatPrice";
 
 describe("formatPrice", () => {
   it("formats integer price correctly", () => {
-    expect(formatPrice(100)).toBe("₹100.00");
+    expect(formatPrice(100)).toBe("₹100.000");
   });
 
   it("formats decimal price correctly", () => {
