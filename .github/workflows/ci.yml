@@ -41,6 +41,15 @@ jobs:
 
           echo "Environment variable is configured"
 
+      - name: Verify private secret
+        run: |
+          if [ -z "$DUMMY_PRIVATE_SECRET" ]; then
+            echo "DUMMY_PRIVATE_SECRET is missing"
+            exit 1
+          fi
+
+          echo "Private secret is configured"
+
       - name: expo doctor
         run: npm run doctor
 
