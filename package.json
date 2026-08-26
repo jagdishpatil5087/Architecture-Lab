@@ -49,7 +49,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "test": "jest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "doctor": "expo doctor"
   },
   "private": true
 }
