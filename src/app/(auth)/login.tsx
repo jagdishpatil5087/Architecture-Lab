@@ -1,5 +1,5 @@
 import { useAuthStore } from "@/stores/auth.store";
-import { Link, useRouter } from "expo-router";
+import { Link } from "expo-router";
 import { useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -14,7 +14,6 @@ import {
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const router = useRouter();
   const { login } = useAuthStore();
 
   const handleLogin = () => {
@@ -66,7 +65,7 @@ const Login = () => {
         </TouchableOpacity>
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Don't have an account? </Text>
+          <Text style={styles.footerText}>Don&apos;t have an account? </Text>
           <Link href="/(auth)/register" asChild>
             <TouchableOpacity>
               <Text style={styles.linkText}>Register</Text>
