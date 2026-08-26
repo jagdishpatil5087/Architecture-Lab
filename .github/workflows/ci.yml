@@ -17,6 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         node-version: [20, 22]
 
@@ -57,12 +58,6 @@ jobs:
 
       - name: expo doctor
         run: npm run doctor
-
-      - name: Intentional failure
-        continue-on-error: true
-        run: |
-          echo "Testing non-blocking failure"
-          exit 1
 
       - name: TypeScript check
         run: npm run typecheck
