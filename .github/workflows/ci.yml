@@ -58,6 +58,11 @@ jobs:
       - name: expo doctor
         run: npm run doctor
 
+      - name: Intentional failure
+        run: |
+          echo "Testing CI failure handling"
+          exit 1
+
       - name: TypeScript check
         run: npm run typecheck
 
