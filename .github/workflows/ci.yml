@@ -66,4 +66,11 @@ jobs:
         run: npm run lint
 
       - name: Run tests
-        run: npm test -- --runInBand
+        run: npm test -- --runInBand --coverage
+
+      - name: Upload test coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-node-${{ matrix.node-version }}
+          path: coverage/
