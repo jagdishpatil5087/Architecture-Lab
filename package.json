@@ -50,7 +50,7 @@
     "lint": "expo lint",
     "test": "jest",
     "typecheck": "tsc --noEmit",
-    "doctor": "expo doctor"
+    "doctor": "npx expo-doctor"
   },
   "private": true
 }
