@@ -44,7 +44,7 @@ jobs:
 
       - name: Verify private secret
         run: |
-          if [ -z "$DUMMY_PRIVATE_SECRET"]; then
+          if [ -z "$DUMMY_PRIVATE_SECRET" ]; then
             echo "DUMMY_PRIVATE_SECRET is missing"
             exit 1
           fi
