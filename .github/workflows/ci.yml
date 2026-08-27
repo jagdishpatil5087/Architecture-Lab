@@ -24,7 +24,6 @@ jobs:
     env:
       EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL }}
       DUMMY_PRIVATE_SECRET: ${{ secrets.DUMMY_PRIVATE_SECRET }}
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
     steps:
       - name: Checkout repository
@@ -38,15 +37,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Setup EAS CLI
-        run: npm install --global eas-cli
-
-      - name: Verify EAS authentication
-        run: eas whoami
-
-      - name: Build Android preview
-        run: eas build --platform android --profile preview --non-interactive
 
       - name: Verify environment
         run: |
@@ -66,7 +56,7 @@ jobs:
 
           echo "Private secret is configured"
 
-      - name: expo doctor
+      - name: Expo doctor
         run: npm run doctor
 
       - name: TypeScript check
@@ -84,3 +74,35 @@ jobs:
         with:
           name: coverage-node-${{ matrix.node-version }}
           path: coverage/
+
+  android-build:
+    name: Android Preview Build
+    runs-on: ubuntu-latest
+    needs: quality
+
+    env:
+      EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL }}
+      DUMMY_PRIVATE_SECRET: ${{ secrets.DUMMY_PRIVATE_SECRET }}
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup EAS CLI
+        run: npm install --global eas-cli
+
+      - name: Verify EAS authentication
+        run: eas whoami
+
+      - name: Build Android preview
+        run: eas build --platform android --profile preview --non-interactive
